@@ -1,51 +1,55 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <head>
-  <title>UPDATE PostgreSQL data with PHP</title>
+  <title>Data Warehouse</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <style>li {list-style: none;}</style>
 </head>
+
 <body>
-  <h2>Supply bookid and enter</h2>
-  <ul>
-    <form name="display" action="index.php" method="POST" >
-      <li>Book ID:</li>
-      <li><input type="text" name="bookid" /></li>
-      <li><input type="submit" name="submit" /></li>
-    </form>
-  </ul>
   <?php
-    $dbname = getenv('db_name');
-    $user = getenv('user_name');
-    $pwd = getenv('user_pwd');
+    $currentPage = '';
+    $homePage = 'home';
+    $queryPage1 = 'query1';
+    $queryPage2 = 'query2';
+    $queryPage3 = 'query3';
+    $queryPage4 = 'query4';
 
-    // connect to DB
-    $db = pg_connect("host=localhost port=5432 dbname=".$dbname." user=".$user." password=".$pwd); 
-
-    $result = pg_query($db, "SELECT * FROM book where book_id = '$_POST[bookid]'");		// Query template
-    $row    = pg_fetch_assoc($result);		// To store the result row
-    if (isset($_POST['submit'])) {
-        echo "<ul><form name='update' action='index.php' method='POST' >  
-    	<li>Book ID:</li>  
-    	<li><input type='text' name='bookid_updated' value='$row[book_id]' /></li>  
-    	<li>Book Name:</li>  
-    	<li><input type='text' name='book_name_updated' value='$row[name]' /></li>  
-    	<li>Price (USD):</li><li><input type='text' name='price_updated' value='$row[price]' /></li>  
-    	<li>Date of publication:</li>  
-    	<li><input type='text' name='dop_updated' value='$row[date_of_publication]' /></li>  
-    	<li><input type='submit' name='new' /></li>  
-    	</form>  
-    	</ul>";
-    }
-    if (isset($_POST['new'])) {	// Submit the update SQL command
-        $result = pg_query($db, "UPDATE book SET book_id = '$_POST[bookid_updated]',  
-    name = '$_POST[book_name_updated]',price = '$_POST[price_updated]',  
-    date_of_publication = '$_POST[dop_updated]'");
-        if (!$result) {
-            echo "Update failed!!";
-        } else {
-            echo "Update successful!";
+    // Routing
+    $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
+    switch ($request_uri[0]) {
+      case '/':
+        if ($currentPage != $homePage) {
+          $currentPage = $homePage;
+          require $currentPage.'.php';
         }
+        break;
+      case '/query1':
+        if ($currentPage != $queryPage1) {
+          $currentPage = $queryPage1;
+          require $currentPage.'.php';
+        }
+        break;
+      case '/query2':
+        if ($currentPage != $queryPage2) {
+          $currentPage = $queryPage2;
+          require $currentPage.'.php';
+        }
+        break;
+      case '/query3':
+        if ($currentPage != $queryPage3) {
+          $currentPage = $queryPage3;
+          require $currentPage.'.php';
+        }
+        break;
+      case '/query4':
+        if ($currentPage != $queryPage4) {
+          $currentPage = $queryPage4;
+          require $currentPage.'.php';
+        }
+        break;
+      default:
+        echo "Page not found. :(";
+        break;
     }
-    ?>  
+  ?> 
 </body>
 </html>
