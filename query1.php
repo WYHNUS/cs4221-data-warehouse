@@ -1,4 +1,5 @@
 <?php
+  include('head.html');
   include('navbar.php');
   $dbname = getenv('db_name');
   $user = getenv('user_name');
@@ -7,40 +8,29 @@
   // connect to DB
   $db = pg_connect("host=localhost port=5432 dbname=".$dbname." user=".$user." password=".$pwd);
 
-  $result = pg_query($db, "SELECT * FROM book where book_id = '$_POST[bookid]'");   // Query template
-  $row    = pg_fetch_assoc($result);    // To store the result row
-  if (isset($_POST['submit'])) {
-      echo "<ul><form name='update' action='query1.php' method='POST' >  
-    <li>Book ID:</li>  
-    <li><input type='text' name='bookid_updated' value='$row[book_id]' /></li>  
-    <li>Book Name:</li>  
-    <li><input type='text' name='book_name_updated' value='$row[name]' /></li>  
-    <li>Price (USD):</li><li><input type='text' name='price_updated' value='$row[price]' /></li>  
-    <li>Date of publication:</li>  
-    <li><input type='text' name='dop_updated' value='$row[date_of_publication]' /></li>  
-    <li><input type='submit' name='new' /></li>  
-    </form>  
-    </ul>";
-  }
-  if (isset($_POST['new'])) { // Submit the update SQL command
-      $result = pg_query($db, "UPDATE book SET book_id = '$_POST[bookid_updated]',  
-  name = '$_POST[book_name_updated]',price = '$_POST[price_updated]',  
-  date_of_publication = '$_POST[dop_updated]'");
-      if (!$result) {
-          echo "Update failed!!";
-      } else {
-          echo "Update successful!";
-      }
+  if (isset($_POST['filter'])) {
+    echo($_POST[start_date]);
+    echo($_POST[end_date]);
   }
 ?>
 
 <h2>Query 1</h2>
 <p>Display the order key, customer name, part name, supplier name, order date and extended price for each selected item.</p>
 
-<ul>
-  <form name="display" action="query1.php" method="POST" >
-    <li>Filtering:</li>
-    <li><input type="text" name="bookid" /></li>
-    <li><input type="submit" name="submit" /></li>
-  </form>
-</ul>
+<form name="filter" action="query1.php" method="POST">
+  Start Order Date: <input id="start_datepicker" name="start_date" width="276" /> <br>
+  End Order Date: <input id="end_datepicker" name="end_date" width="276" /> <br>
+  <input type="submit" name="filter" value="Submit">
+</form>
+
+<script>
+  $('#start_datepicker').datepicker({
+    uiLibrary: 'bootstrap4',
+    value: '01/01/2018'
+  })
+
+  $('#end_datepicker').datepicker({
+    uiLibrary: 'bootstrap4',
+    value: '01/01/2018'
+  })
+</script>

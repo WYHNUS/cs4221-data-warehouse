@@ -1,4 +1,5 @@
 <?php
+  include('head.html');
   include('navbar.php');
   $dbname = getenv('db_name');
   $user = getenv('user_name');
