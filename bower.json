@@ -1,0 +1,22 @@
+{
+  "name": "data_warehouse",
+  "homepage": "https://github.com/WYHNUS/cs4221-data-warehouse",
+  "authors": [
+    "WYHNUS <yanhao0321@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.0",
+    "jquery": "^1.9.1",
+    "gijgo": "^1.9.6"
+  }
+}

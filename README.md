@@ -8,6 +8,8 @@ Follow online instructions for setting up LAPP.
 
 Update environment variables for `db_name`, `user_name` and `user_pwd` in order to connect to database using PHP.
 
+Use `bower install` to install dependencies.
+
 ## Development
 
 To improve the cleanliness of the code base and the usefulness of commit history, please use a separate branch for each new feature, and squash all commits in development branch before merging into the master branch.
