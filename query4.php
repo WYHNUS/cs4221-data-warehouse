@@ -3,12 +3,14 @@
   include('navbar.php');
 ?>
 
-<h2>Query 4</h2>
-<p>Determines how well the order priority system is working and gives an assessment of customer satisfaction.</p>
+<div class="main">
+  <h2>Query 4</h2>
+  <p>Determines how well the order priority system is working and gives an assessment of customer satisfaction.</p>
 
-<?php
-  include('filter.html');
-?>
+  <?php
+    include('filter.html');
+  ?>
+</div>
 
 <script>
   $(() => {

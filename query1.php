@@ -3,25 +3,27 @@
   include('navbar.php');
 ?>
 
-<h2>Query 1</h2>
-<p>Display the order key, customer name, part name, supplier name, order date and extended price for each selected item.</p>
+<div class="main">
+  <h2>Query 1</h2>
+  <p>Display the order key, customer name, part name, supplier name, order date and extended price for each selected item.</p>
 
-<?php
-  include('filter.html');
-?>
+  <?php
+    include('filter.html');
+  ?>
 
-<table id="query_1_table" class="table" style="margin: 20px; display: none">
-  <thead>
-    <th>Order Key</th>
-    <th>Customer Name</th>
-    <th>Part Name</th>
-    <th>Supplier Name</th>
-    <th>Order Date</th>
-    <th>Extended Price</th>
-  </thead>
-  <tbody id="query_1_table_content">
-  </tbody>
-</table>
+  <table id="query_1_table" class="table" style="margin: 20px; display: none">
+    <thead>
+      <th>Order Key</th>
+      <th>Customer Name</th>
+      <th>Part Name</th>
+      <th>Supplier Name</th>
+      <th>Order Date</th>
+      <th>Extended Price</th>
+    </thead>
+    <tbody id="query_1_table_content">
+    </tbody>
+  </table>
+</div>
 
 <script>
   $(() => {

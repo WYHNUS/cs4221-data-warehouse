@@ -3,23 +3,25 @@
   include('navbar.php');
 ?>
 
-<h2>Query 2</h2>
-<p>Display the total sum of the extended prices for each existing combination of customer region, customer nation and customer market segment.</p>
+<div class="main">
+  <h2>Query 2</h2>
+  <p>Display the total sum of the extended prices for each existing combination of customer region, customer nation and customer market segment.</p>
 
-<?php
-  include('filter.html');
-?>
+  <?php
+    include('filter.html');
+  ?>
 
-<table id="query_2_table" class="table" style="margin: 20px; display: none">
-  <thead>
-    <th>Total Sum of Extended Prices</th>
-    <th>Customer Region</th>
-    <th>Customer Nation</th>
-    <th>Customer Market Segment</th>
-  </thead>
-  <tbody id="query_2_table_content">
-  </tbody>
-</table>
+  <table id="query_2_table" class="table" style="margin: 20px; display: none">
+    <thead>
+      <th>Total Sum of Extended Prices</th>
+      <th>Customer Region</th>
+      <th>Customer Nation</th>
+      <th>Customer Market Segment</th>
+    </thead>
+    <tbody id="query_2_table_content">
+    </tbody>
+  </table>
+</div>
 
 <script>
   $(() => {

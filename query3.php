@@ -3,28 +3,30 @@
   include('navbar.php');
 ?>
 
-<h2>Query 3</h2>
-<p>Create a pricing summary report page that reports the amount of business that was billed, shipped, and returned.</p>
+<div class="main">
+  <h2>Query 3</h2>
+  <p>Create a pricing summary report page that reports the amount of business that was billed, shipped, and returned.</p>
 
-<?php
-  include('filter.html');
-?>
+  <?php
+    include('filter.html');
+  ?>
 
-<table id="query_3_table" class="table" style="margin: 20px; display: none">
-  <thead>
-    <th>Total Extended Prices</th>
-    <th>Discounted Extended Prices</th>
-    <th>Discounted Extended Prices plus Tax</th>
-    <th>Average quantity</th>
-    <th>Average Extended Prices</th>
-    <th>Average Discount</th>
-    <th>Year</th>
-    <th>Month</th>
-    <th>Lineitems Count</th>
-  </thead>
-  <tbody id="query_3_table_content">
-  </tbody>
-</table>
+  <table id="query_3_table" class="table" style="margin: 20px; display: none">
+    <thead>
+      <th>Total Extended Prices</th>
+      <th>Discounted Extended Prices</th>
+      <th>Discounted Extended Prices plus Tax</th>
+      <th>Average quantity</th>
+      <th>Average Extended Prices</th>
+      <th>Average Discount</th>
+      <th>Year</th>
+      <th>Month</th>
+      <th>Lineitems Count</th>
+    </thead>
+    <tbody id="query_3_table_content">
+    </tbody>
+  </table>
+</div>
 
 <script>
   $(() => {
@@ -44,7 +46,7 @@
         success: (result) => {
           let content = JSON.parse(result)
           $('#query_3_table').show()
-          
+
           let tableBody = $('#query_3_table_content')
           tableBody.empty()
           for (let row of content) {
