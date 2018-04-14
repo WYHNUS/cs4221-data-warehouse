@@ -35,12 +35,29 @@
     value: '01/01/2018'
   })
 
+  function dateValidation(dateString) {
+    if (dateString.length === 0) {
+      return true
+    } else {
+      try {
+        new Date(dateString)
+        return true
+      } catch(e) {
+        console.log(e)
+        console.log("invalid datastring")
+        return false
+      }
+    }
+  }
+
   // check if form fields are valid
   function formValidation() {
     let validationResult = fieldSyntaxValidation($('#customer_ids').val()) 
         && fieldSyntaxValidation($('#part_ids').val())
         && fieldSyntaxValidation($('#supplier_ids').val())
-        && (new Date($('#start_datepicker').val()) <= new Date($('#end_datepicker').val()))
+        && dateValidation($('#start_datepicker').val())
+        && dateValidation($('#end_datepicker').val())
+        && (($('#start_datepicker').val().length != 0 && $('#end_datepicker').val().length != 0) ? (new Date($('#start_datepicker').val()) <= new Date($('#end_datepicker').val())) : true)
 
     if (validationResult) {
       $("#validationError").html("")

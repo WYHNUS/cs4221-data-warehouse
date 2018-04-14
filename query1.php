@@ -26,7 +26,7 @@
         url: 'server.php',
         data: serializedData,
         success: (result) => {
-          console.log(result)
+          console.log(JSON.parse(result))
         }
       })
     })
