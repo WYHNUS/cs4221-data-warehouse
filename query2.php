@@ -15,6 +15,10 @@
     $('#filter_form').on('submit', (e) => {
       e.preventDefault()
 
+      if (!formValidation()) {
+        return
+      }
+
       $('#query_id').val('2')
       let serializedData = $('#filter_form').serialize()
       $.ajax({

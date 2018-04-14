@@ -1,7 +1,26 @@
 <form id="filter_form">
   <input id="query_id" name="query_id" style="display: none">
-  Start Order Date: <input id="start_datepicker" name="start_date" width="276" /> <br>
-  End Order Date: <input id="end_datepicker" name="end_date" width="276" /> <br>
+  <div class="form-group">
+    <label for="customer_ids">Customer IDs: </label>
+    <input id="customer_ids" class="form-control" name="customer_ids" />
+  </div>
+  <div class="form-group">
+    <label for="part_ids">Part IDs: </label>
+    <input id="part_ids" class="form-control" name="part_ids" />
+  </div>
+  <div class="form-group">
+    <label for="supplier_ids">Supplier IDs: </label>
+    <input id="supplier_ids" class="form-control" name="supplier_ids" />
+  </div>
+  <div class="form-group">
+    <label for="start_datepicker">Start Order Date: </label>
+    <input id="start_datepicker" name="start_date" width="276" />
+  </div>
+  <div class="form-group">
+    <label for="end_datepicker">End Order Date: </label>
+    <input id="end_datepicker" name="end_date" width="276" />
+  </div>
+  <p style="color:red;" id="validationError"></p>
   <input type="submit" name="filter" value="Submit" >
 </form>
 
@@ -15,4 +34,30 @@
     uiLibrary: 'bootstrap4',
     value: '01/01/2018'
   })
+
+  // check if form fields are valid
+  function formValidation() {
+    let validationResult = fieldSyntaxValidation($('#customer_ids').val()) 
+        && fieldSyntaxValidation($('#part_ids').val())
+        && fieldSyntaxValidation($('#supplier_ids').val())
+        && (new Date($('#start_datepicker').val()) <= new Date($('#end_datepicker').val()))
+
+    if (validationResult) {
+      $("#validationError").html("")
+    } else {
+      $("#validationError").html("One or more input fields are not valid." + "<br />" 
+        + "Make sure id fields only contain numerical indices separated by comma, and range indices connected by hyphen (for instance: 1,2,100-200)." + "<br />" 
+        + "Make sure start order date is no later than end order date.")
+    }
+
+    return validationResult
+  }
+
+  function fieldSyntaxValidation(input) {
+    if (input.trim().length === 0) {
+      return true
+    }
+    let regex = /^[0-9,-]+$/
+    return regex.test(input.trim())
+  }
 </script>

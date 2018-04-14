@@ -2,7 +2,6 @@
   $dbname = getenv('db_name');
   $user = getenv('user_name');
   $pwd = getenv('user_pwd');
-
   // connect to DB
   $db = pg_connect("host=localhost port=5432 dbname=".$dbname." user=".$user." password=".$pwd);
 
