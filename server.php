@@ -76,8 +76,10 @@
       echo(json_encode($row));
       break;
     case '2':
-      # todo...
-      echo('2');
+      $query = "SELECT STAR_CUSTOMER.R_NAME, STAR_CUSTOMER.N_NAME, STAR_CUSTOMER.C_MKTSEGMENT, SUM(L_EXTENDEDPRICE) FROM STAR_LINEORDER LEFT JOIN STAR_CUSTOMER ON STAR_LINEORDER.O_CUSTKEY = STAR_CUSTOMER.C_CUSTKEY LEFT JOIN PART ON STAR_LINEORDER.L_PARTKEY = PART.P_PARTKEY LEFT JOIN SUPPLIER ON STAR_LINEORDER.L_SUPPKEY = SUPPLIER.S_SUPPKEY".$query_condition.";";
+      $result = pg_query($db, $query);
+      $row = pg_fetch_all($result);
+      echo(json_encode($row));
       break;
     case '3':
       # todo...

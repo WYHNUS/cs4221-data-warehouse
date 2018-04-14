@@ -26,13 +26,11 @@
 
 <script>
   $('#start_datepicker').datepicker({
-    uiLibrary: 'bootstrap4',
-    value: '01/01/2018'
+    uiLibrary: 'bootstrap4'
   })
 
   $('#end_datepicker').datepicker({
-    uiLibrary: 'bootstrap4',
-    value: '01/01/2018'
+    uiLibrary: 'bootstrap4'
   })
 
   function dateValidation(dateString) {
@@ -43,8 +41,6 @@
         new Date(dateString)
         return true
       } catch(e) {
-        console.log(e)
-        console.log("invalid datastring")
         return false
       }
     }
