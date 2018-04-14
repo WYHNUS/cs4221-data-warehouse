@@ -74,10 +74,8 @@ ON LINEITEM.L_ORDERKEY = ORDERS.O_ORDERKEY;
 
 DROP TABLE PARTSUPP;
 
-CREATE TABLE RAW_DATES as select datum::date from generate_series(timestamp without time zone '1950-01-01'::date, 
-									timestamp without time zone '2050-12-31'::date, '1 day') as gs(datum);
+CREATE TABLE RAW_DATES as select datum::date from generate_series(timestamp without time zone '1950-01-01'::date, timestamp without time zone '2050-12-31'::date, '1 day') as gs(datum);
 									
 CREATE TABLE STAR_DATE AS
 SELECT datum, cast(EXTRACT(month from datum)  as int) as month, cast(EXTRACT(year from datum) as int) as year
 FROM RAW_DATES;
-07f55dd5e6c32573989eb9aa4be571ee38bd0811:bootstrap sql/create-tpch-star.sql
