@@ -1,0 +1,18 @@
+<form id="filter_form">
+  <input id="query_id" name="query_id" style="display: none">
+  Start Order Date: <input id="start_datepicker" name="start_date" width="276" /> <br>
+  End Order Date: <input id="end_datepicker" name="end_date" width="276" /> <br>
+  <input type="submit" name="filter" value="Submit" >
+</form>
+
+<script>
+  $('#start_datepicker').datepicker({
+    uiLibrary: 'bootstrap4',
+    value: '01/01/2018'
+  })
+
+  $('#end_datepicker').datepicker({
+    uiLibrary: 'bootstrap4',
+    value: '01/01/2018'
+  })
+</script>
