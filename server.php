@@ -88,8 +88,11 @@
       echo(json_encode($row));
       break;
     case '4':
-      # todo...
-      echo('4');
+      $modified_condition = empty($query_condition) ? '' : ' AND '.substr($query_condition, 6);
+      $query = "SELECT s.O_ORDERPRIORITY, COUNT(*) FROM STAR_LINEORDER s WHERE s.L_RECEIPTDATE > s.L_COMMITDATE ".$modified_condition." GROUP BY s.O_ORDERPRIORITY ORDER BY s.O_ORDERPRIORITY ASC;";
+      $result = pg_query($db, $query);
+      $row = pg_fetch_all($result);
+      echo(json_encode($row));
       break;
     default:
       echo('invalid query id');

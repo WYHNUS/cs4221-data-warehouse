@@ -10,6 +10,15 @@
   <?php
     include('filter.html');
   ?>
+
+  <table id="query_4_table" class="table" style="margin: 20px; display: none">
+    <thead>
+      <th>Order Priority</th>
+      <th>Count for orders with at least one item having receiptdate > commitdate</th>
+    </thead>
+    <tbody id="query_4_table_content">
+    </tbody>
+  </table>
 </div>
 
 <script>
@@ -28,7 +37,17 @@
         url: 'server.php',
         data: serializedData,
         success: (result) => {
-          console.log(result)
+          let content = JSON.parse(result)
+          $('#query_4_table').show()
+
+          let tableBody = $('#query_4_table_content')
+          tableBody.empty()
+          for (let row of content) {
+            var tableRow = $('<tr></tr>')
+            tableRow.append('<td>' + row.o_orderpriority + '</td>')
+            tableRow.append('<td>' + row.count + '</td>')
+            tableBody.append(tableRow)
+          }
         }
       })
     })
